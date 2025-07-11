@@ -1,0 +1,5 @@
+================ changepath : convert windows path to linux path
+    example : changepath C:\Users\linkin\myScript\script\changepath.py
+
+================ open : open the folder of the path
+    example : open .  <or> open C:\Users\linkin\myScript\script\
