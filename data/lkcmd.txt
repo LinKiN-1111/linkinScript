@@ -1,9 +1,11 @@
 ================ changepath : convert windows path to linux path
-    example : changepath C:\Users\linkin\myScript\script\changepath.py
+    example : changepath <C:\Users\linkin\myScript\script\changepath.py>
 
 ================ open : open the folder of the path
-    example : open .  <or> open C:\Users\linkin\linkinScript
-
+    example : open .  "or" open <C:\Users\linkin\linkinScript>
 
 ================ lkdo : 快速执行/data/local/tmp目录下的文件
     example : lkdo (直接运行)
+
+================ lkezcmd : 输出一些我搜集的可能有用的命令
+    example : lkezcmd (直接运行)
