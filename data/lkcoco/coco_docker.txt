@@ -1,0 +1,34 @@
+镜像管理:
+docker images 或 docker image ls: 列出本地主机上的镜像。
+docker pull <image_name>: 从Docker Hub 或其他镜像仓库拉取镜像。
+docker rmi <image_id> 或 docker image rm <image_id>: 删除指定的镜像。
+docker build -t <image_name> .: 根据当前目录下的Dockerfile 构建镜像。
+docker save -o <output_file.tar> <image_name>: 将镜像保存到tar 文件。
+docker load -i <input_file.tar>: 从tar 文件加载镜像。
+
+容器管理:
+docker run <image_name>: 基于镜像创建一个新的容器并运行它。
+docker ps: 列出正在运行的容器。
+docker ps -a: 列出所有容器，包括已停止的。
+docker stop <container_id>: 停止一个正在运行的容器。
+docker start <container_id>: 启动一个已停止的容器。
+docker restart <container_id>: 重启一个容器。
+docker rm <container_id>: 删除一个已停止的容器。
+docker exec -it <container_id> bash: 进入一个正在运行的容器的shell。
+docker logs <container_id>: 查看容器的日志。
+docker cp <container_id>:<container_path> <host_path>: 从容器复制文件到主机。
+docker cp <host_path> <container_id>:<container_path>: 从主机复制文件到容器。
+docker inspect <container_id>: 查看容器的详细信息。
+
+docker run 的常用参数:
+-d: 后台运行容器。
+-p <host_port>:<container_port>: 映射容器端口到主机的端口。
+-v <host_path>:<container_path>: 挂载卷到容器。
+--name <container_name>: 为容器指定一个名称。
+--rm: 容器退出时自动删除容器。
+-it: 以交互式模式运行容器，并分配一个伪终端。
+例子：
+docker run -d -p 6379:6379 --name my-redis redis
+docker run -it --rm ubuntu bash
+docker run -d --name my-webapp -p 8080:80  -v /host/app:/usr/share/nginx/html nginx
+(-v /host/app:/usr/share/nginx/html: 将宿主机上的 HTML 代码目录 /host/app 映射到 Nginx 的默认网页根目录。)
