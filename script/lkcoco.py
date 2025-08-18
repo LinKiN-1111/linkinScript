@@ -6,7 +6,7 @@ conda_path = os.path.join(root_dir, "data","lkcoco" ,"coco_conda.txt")  # 拼接
 git_path = os.path.join(root_dir, "data","lkcoco" ,"coco_git.txt")  # 拼接目标路径
 frida_path = os.path.join(root_dir, "data","lkcoco" ,"coco_firda.txt")  # 拼接目标路径
 docker_path = os.path.join(root_dir, "data","lkcoco" ,"coco_docker.txt")  # 拼接目标路径
-docker_path = os.path.join(root_dir, "data","lkcoco" ,"coco_ezcmd.txt")  # 拼接目标路径
+ezcmd_path = os.path.join(root_dir, "data","lkcoco" ,"coco_ezcmd.txt")  # 拼接目标路径
 
 print("choose the command you want to know:")
 print("1 : git")
@@ -33,6 +33,6 @@ if(choosed == '4'):
         print("".join(file.readlines()))
 
 if(choosed == '5'):
-    with open(docker_path, "r",encoding='utf-8') as file:
+    with open(ezcmd_path, "r",encoding='utf-8') as file:
         print("".join(file.readlines()))
 
