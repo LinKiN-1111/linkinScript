@@ -4,7 +4,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))  # lkcmd.py 的位置
 root_dir = os.path.dirname(script_dir)                   # 退到 MYSCRIPT/
 conda_path = os.path.join(root_dir, "data","lkcoco" ,"coco_conda.txt")  # 拼接目标路径
 git_path = os.path.join(root_dir, "data","lkcoco" ,"coco_git.txt")  # 拼接目标路径
-frida_path = os.path.join(root_dir, "data","lkcoco" ,"coco_firda.txt")  # 拼接目标路径
+frida_path = os.path.join(root_dir, "data","lkcoco" ,"coco_frida.txt")  # 拼接目标路径
 docker_path = os.path.join(root_dir, "data","lkcoco" ,"coco_docker.txt")  # 拼接目标路径
 ezcmd_path = os.path.join(root_dir, "data","lkcoco" ,"coco_ezcmd.txt")  # 拼接目标路径
 
