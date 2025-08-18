@@ -1,0 +1,22 @@
+=== 环境管理 ===
+conda create -n <env_name> # 创建新环境
+conda activate <env_name>  # 激活环境
+conda deactivate           # 退出当前环境
+conda env list             # 列出所有环境
+conda remove -n <env_name> --all # 删除整个环境
+
+=== 包管理 ===
+conda install <package_name> # 安装包
+conda install <package_name>=<version> # 安装指定版本
+conda list # 查看当前环境的包列表
+conda remove <package_name>  # 删除包
+conda update <package_name>  # 更新包
+
+=== 环境导入/导出 ===
+conda env export > environment.yml  # 导出环境配置
+conda env create -f environment.yml # 根据yml文件创建环境
+
+=== 其他常用 ===
+conda search <package_name> # 搜索可用的包版本
+conda info                  # 查看conda信息
+conda clean -a              # 清理缓存

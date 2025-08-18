@@ -1,29 +1,83 @@
-基础命令：
+=== 创建仓库 ===
 git init  初始化仓库
 git clone  拷贝一份远程仓库，也就是下载一个项目。
-git add	添加文件到暂存区
-git status	查看仓库当前的状态，显示有变更的文件。
-git diff	比较文件的不同，即暂存区和工作区的差异。
-git commit	提交暂存区到本地仓库。
-git rm	将文件从暂存区和工作区中删除。
-git checkout	分支切换。
-git switch 	更清晰地切换分支。
-git log	查看历史提交记录
-git blame <file>	以列表形式查看指定文件的历史修改记录
-git remote	远程仓库操作
-git fetch	从远程获取代码库
-git pull	下载远程代码并合并
-git push	上传远程代码并合并
 
-分支管理：
-git checkout -b <branchname>  创建新分支并切换到该分支 例子：git checkout -b feature-xyz
+=== 添加/删除和提交文件 ===
+git status         #  查看仓库的状态。
+git log            #  查看所有提交历史
+git add            #  添加到暂存区 可以使用通配符，目录等
+example  : `git add *.txt` or `git add .`  (添加文件到暂存区)
+example2 : rm <file>;git add <file> (删除文件后，再删除暂存区内容)
+git commit         #  只提交暂存区中的内容，不会提交工作区的内容
+example  : git commit -m "this is the a commit!"
+git rm             #  删除文件(删除后不要忘记commit！)
+example  : git rm <file>   # 把文件从工作区和暂存区同时删除
+example2 : git rm --cached <file>  # 把文件从暂存区删除，但是保留在工作区
+example3 : git rm -r *  # 递归删除某个目录下的所有子目录和文件
 
-git branch 查看所有分支
-git branch -r  查看远程分支
-git branch -a  查看所有本地和远程分支
+=== 回退版本 === 
+git reset --soft   #  工作区和暂存区都进行保留
+git reset --hard   #  工作区和暂存区都进行删除
+git reset --mixed  #  工作区进行保留，暂存区进行删除
+git reflog         #  获取所有操作之前的版本号，所有提交都是可回溯的
+example  :  git reset <version> --hard/soft/mixed
+example2 :  git reset HEAD^  回退到上个版本(^^就上两个版本以此类推)
 
-git merge <branchname>  例子：git checkout main  git merge feature-xyz
+=== 文件差异 === （Head表示当前最新提交）
+git diff           # 查看工作区、暂存区、本地仓库之间的差异
+git ls-files       # 查看仓库中的文件
+example  ：git diff (默认比对工作区与暂存区) 
+example2 : git diff HEAD (比较工作区与版本库)
+example3 : git diff <commit1> <commit2> (比较两个版本库)
 
-git branch -d <branchname>  删除本地分支
-git branch -D <branchname>  强制删除未合并的分支
-git push origin --delete <branchname> 删除远程分支
+=== 关联本地仓库和远程仓库 === （可以直接看github教程）
+添加远程仓库 ： 
+step1 : git remote add <远程仓库别名><远程仓库地址>
+step2 : git push -u    <远程仓库别名><分支名> 
+git remote add origin git@github.com:geekhall-laoyang/first-repo.git
+git branch -M main   
+git push -u origin main
+1.将本地仓库关联到远程 GitHub 仓库。
+2.将当前本地分支重命名为 main
+3.将本地 main分支推送到远程 origin仓库，并设置上游（upstream）关联。
+
+=== 分支简介与基本操作 ===
+git branch                 # 查看分支列表
+git branch <branch_name>   # 创建新分支并切换到该分支
+git switch <branch_name>   # 切换分支
+git merge  <branch_name>   # 合并分支
+git branch -d <branch_name># 删除已合并分支
+git branch -D <branch_name># 删除未合并分支
+tip:只要修改未被提交，无论如何切换分支，都会保留工作区的内容。
+只有真正提交了，才会真正属于某个分支，此后切换分支才会处理该文件。
+
+=== 远程分支操作 ===
+git remote -v                  # 查看所有远程仓库地址
+git fetch <远程仓库别名>        # 获取远程仓库所有分支更新（不自动合并）
+git fetch --prune              # 同步远程已删除的分支（清理本地缓存）
+git push <远程仓库别名> <本地分支名>             # 推送本地分支到远程
+git push -u <远程仓库别名> <本地分支名>          # 推送并建立追踪关系（首次推荐）
+git push <远程仓库别名> <本地分支名>:<远程分支名> # 推送到远程不同名分支
+git push --delete <远程仓库别名> <远程分支名>    # 删除远程分支
+
+=== 解决合并冲突 ===
+当分支修改同一行内容的时候，就会产生合并冲突。
+解决方法也很简单，直接在冲突的地方修改即可。
+git add <file>;git commit   重新提交即可解决冲突
+git merge --abort           取消合并
+
+=== 远端推送 ===
+当我们直接git push时，会弹出git push被rejected，这种情况就是出现了冲突。
+此时我们需要git pull 先将远端仓库拉取下来，若没有发生合并冲突，则此时可以
+直接git pull将目标进行拉取，再进行git push将仓库推送到远程。
+若出现合并冲突，则根据冲突先把本地仓库的冲突修复，最后推送到远程。
+
+=== gitignore ===
+应该忽略哪些文件？
+1. 系统或者软件自动生成的文件
+2. 编译产生的中间文件和结果文件
+3. 运行时生产的日志文件、缓存文件、临时文件
+4. 涉及身份、密码、口令、密钥等敏感信息文件
+常用： .gitignore
+*.log  ：忽略全部.log结尾的文件
+temp/  ：忽略这个文件夹
