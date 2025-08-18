@@ -5,7 +5,7 @@
     example : open .  "or" open <C:\Users\linkin\linkinScript>
 
 ================ lkdo : 快速执行/data/local/tmp目录下的文件
-    example : lkdo (直接运行)
+    example : lkdo 
 
-================ lkezcmd : 输出一些我搜集的可能有用的命令
-    example : lkezcmd (直接运行)
+================ lkcoco : 输出一些我搜集的可能有用的命令
+    example : lkcoco
