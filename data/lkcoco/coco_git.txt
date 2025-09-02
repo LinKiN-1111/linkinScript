@@ -59,6 +59,12 @@ git push <远程仓库别名> <本地分支名>             # 推送本地分支
 git push -u <远程仓库别名> <本地分支名>          # 推送并建立追踪关系（首次推荐）
 git push <远程仓库别名> <本地分支名>:<远程分支名> # 推送到远程不同名分支
 git push --delete <远程仓库别名> <远程分支名>    # 删除远程分支
+git remote remove <远程仓库别名> # 删除本地记录的远程仓库地址
+git branch -d -r <远程仓库别名>/<分支名> # 删除本地缓存的远程分支引用
+git branch --unset-upstream     # 解除当前分支的远程追踪关系
+git remote prune <远程仓库别名> # 清理指定远程的失效分支引用（同fetch --prune）
+git remote set-url <别名> <新URL> # 修改远程仓库地址
+
 
 === 解决合并冲突 ===
 当分支修改同一行内容的时候，就会产生合并冲突。
